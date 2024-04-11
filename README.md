@@ -73,4 +73,11 @@ Open the `webpage-ask-questions ` flow and on the **Redis-Backed Chat Memory** n
   * **Redis URL:** `redis://redis-stack-1:6379`
 
 Now ask the question: `can a player asked for an incident to be reviewed by the VAR`
-`  
+
+
+## Vector Admin
+
+Add a Chroma database connection with
+
+* **Instance URL:** `http://chroma:8000`
+* **API Header & Key:** `AUTHORIZATION` & `abc123!`  

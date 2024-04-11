@@ -46,7 +46,7 @@ code .
 Enable the following services
 
   * `FLOWISE_enable`
-  * `CHROMA_enable`
+  * `CHROMA_enable` and set `CHROMA_auth_token`
   * `OLLAMA_enable` (external or internal, depending on platform)
   * `OLLAMA_WEBUI_enable`
   * `REDIS_STACK_enable`
@@ -117,5 +117,11 @@ Open the `webpage-ask-questions ` flow and on the **Redis-Backed Chat Memory** n
   * **CREDENTIAL NAME:** `redis`
   * **Redis URL:** `redis://redis-stack-1:6379`
 
-Now ask the question: `can a player asked for an incident to be reviewed by the VAR
-`  
+Now ask the question: `can a player asked for an incident to be reviewed by the VAR`  
+
+## Vector Admin
+
+Add a Chroma database connection with
+
+* **Instance URL:** `http://chroma:8000`
+* **API Header & Key:** `AUTHORIZATION` & `abc123!`

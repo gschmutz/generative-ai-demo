@@ -21,7 +21,7 @@
       private_docker_repository_name: 'trivadis'
       # UID to use when using the "user" property in a service to override the user inside the container
       uid: '1000'
-      # Optional environment identifier of this platys instance, by default take it from environment variable but can be changed to hardcoded value. 
+      # Optional environment identifier of this platys instance, by default take it from environment variable but can be changed to hardcoded value.
       # Allowed values (taken from DataHub): dev, test, qa, uat, ei, pre, non_prod, prod, corp
       env: '${PLATYS_ENV}'
       data_centers: 'dc1,dc2'
@@ -83,7 +83,7 @@
       KAFKA_datacenters: 1
       KAFKA_broker_nodes: 3
       KAFKA_broker_first_port: 9092
-      # Replace CLUSTER_ID with a unique base64 UUID using "docker run confluentinc/cp-kafka kafka-storage random-uuid" 
+      # Replace CLUSTER_ID with a unique base64 UUID using "docker run confluentinc/cp-kafka kafka-storage random-uuid"
       KAFKA_cluster_id: 'y4vRIwfDT0SkZ65tD7Ey2A'
       KAFKA_internal_replication_factor: 3
       KAFKA_delete_topic_enable: true
@@ -122,7 +122,7 @@
       KAFKA_controller_security_protocol: ''
       # either 'PLAIN', 'SCRAM-SHA-256' or 'SCRAM-SHA-512'
       KAFKA_sasl_mechanism: 'PLAIN'
-      # KAFKA_<controller|broker|local|dockerhost|external>_sasl_mechanism: ''      
+      # KAFKA_<controller|broker|local|dockerhost|external>_sasl_mechanism: ''
       KAFKA_controller_sasl_mechanism: ''
       KAFKA_ssl_client_authentication_enable: false
       KAFKA_client_truststore_password: ''
@@ -456,12 +456,12 @@
       BURROW_DASHBOARD_enable: false
       #
       # ===== Debezium Server ========
-      #      
+      #
       DEBEZIUM_SERVER_enable: false
       DEBEZIUM_SERVER_volume_map_data: false
       #
       # ===== Debezium UI ========
-      #      
+      #
       DEBEZIUM_UI_enable: false
       #
       # ===== Apache Hadoop ========
@@ -475,7 +475,7 @@
       # either 2.4 or 3.1 or 3.2
       SPARK_base_version: 3.1
       #SPARK_major_version: 2        # has been replaced by SPARK_base_version
-      
+
       # "hive" or "in-memory"
       SPARK_catalog: in-memory
       SPARK_workers: 2
@@ -522,7 +522,7 @@
       FLINK_SQL_GATEWAY_enable: false
       #
       # ===== Nussknacker ========
-      #      
+      #
       NUSSKNACKER_enable: false
       # one of 'streaming', 'streaming-lite-embedded', 'request-response-embedded'
       NUSSKNACKER_scenario_type: 'streaming'
@@ -913,7 +913,7 @@
       # ===== Shiny Server ========
       #
       SHINY_SERVER_enable: false
-      # one of: 'base' or 'verse' 
+      # one of: 'base' or 'verse'
       SHINY_SERVER_edition: base
       SHINY_SERVER_volume_map_apps: false
       #
@@ -954,27 +954,27 @@
       LOCAL_AI_volume_map_data: false
       #
       # ===== Ollama WebUI ========
-      #      
+      #
       OLLAMA_WEBUI_enable: true
       OLLAMA_WEBUI_volume_map_data: false
       OLLAMA_WEBUI_secret_key:
       #
       # ===== Alpaca WebUI ========
-      #      
+      #
       ALPACA_WEBUI_enable: false
       #
       # ===== Anything LLM ========
-      #      
+      #
       ANYTHING_LLM_enable: false
       ANYTHING_LLM_volume_map_dotenv: false
       ANYTHING_LLM_volume_map_data: false
       #
       # ===== Big-AGI ========
-      #      
+      #
       BIG_AGI_enable: false
       #
       # ===== AutoGen Studio ========
-      #      
+      #
       AUTOGEN_STUDIO_enable: false
       AUTOGEN_STUDIO_workers: 1
       AUTOGEN_STUDIO_openai_api_key:
@@ -1065,7 +1065,7 @@
       GRAFANA_enable: false
       # list of preview features to enable (tempoSearch, tempoServiceGraph, ... see https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/feature-toggles/)
       GRAFANA_feature_toggles: ''
-      # list of plugins to install (see here: https://grafana.com/grafana/plugins/) 
+      # list of plugins to install (see here: https://grafana.com/grafana/plugins/)
       GRAFANA_install_plugins:
       GRAFANA_auth_anonymous_enabled: false
       #
@@ -1168,7 +1168,7 @@
       REDIS_io_threads:
       REDIS_io_threads_do_reads_enable: false
       REDIS_overrides_config_file:
-      # one of 'nothing', 'warning', 'notice', 'verbose', 'debug' 
+      # one of 'nothing', 'warning', 'notice', 'verbose', 'debug'
       REDIS_log_level: 'notice'
       #
       # ===== Redis Stack ========
@@ -1360,7 +1360,7 @@
       INFLUXDB_CHRONOGRAF_volume_map_data: false
       #
       # ===== InfluxDB Kapacitor 1.x ========
-      #      
+      #
       INFLUXDB_KAPACITOR_enable: false
       INFLUXDB_KAPACITOR_volume_map_data: false
       #
@@ -1392,7 +1392,7 @@
       #
       CHROMA_enable: true
       CHROMA_volume_map_data: false
-      CHROMA_auth_token:
+      CHROMA_auth_token: abc123!
       #
       # ===== Qdrant (VectorDB) ========
       #
@@ -1411,7 +1411,7 @@
       ATTU_enable: false
       #
       # ===== Vector Admin ========
-      #      
+      #
       VECTOR_ADMIN_enable: true
       VECTOR_ADMIN_postgresql_database: ''
       VECTOR_ADMIN_postgresql_user: ''
@@ -1542,7 +1542,7 @@
       # one of the valid Postgresql wal_levels: "replica", "minimal", "logical". Use logical if you want to work with Debezium.
       POSTGRESQL_wal_level:
       #POSTGRESQL_anon_role: appuser
-      
+
       #
       # ===== Posgrest ========
       #
@@ -1710,7 +1710,7 @@
       KONG_nodes: 1
       KONG_use_declarative_config: false
       KONG_use_db: false
-      # either 'postgres' or 'cassandra'   
+      # either 'postgres' or 'cassandra'
       KONG_db_type: 'postgres'
       KONG_log_level: 'info'
       KONG_volume_map_working: false
@@ -2064,7 +2064,7 @@
       CETUSGUARD_docker_daemon_socket: "unix:///var/run/docker.sock"
       CETUSGUARD_no_builtin_rules: false
       #CETUSGUARD_rules: >
-      #    GET %API_PREFIX_CONTAINERS%/%CONTAINER_ID_OR_NAME%/json, 
+      #    GET %API_PREFIX_CONTAINERS%/%CONTAINER_ID_OR_NAME%/json,
       #    POST %API_PREFIX_CONTAINERS%/create
       CETUSGUARD_rules:
       CETUSGUARD_rules_file:
@@ -2179,4 +2179,3 @@
       FHIR_GATEWAY_postgresql_enabled: false
       FHIR_GATEWAY_kafka_enabled: false
       FHIR_GATEWAY_pseudonymizer_enabled: false
-      
