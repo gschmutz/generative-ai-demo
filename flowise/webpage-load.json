@@ -1,0 +1,437 @@
+{
+  "nodes": [
+    {
+      "id": "cheerioWebScraper_0",
+      "position": {
+        "x": 231.63882530153592,
+        "y": 225.0455338939758
+      },
+      "type": "customNode",
+      "data": {
+        "id": "cheerioWebScraper_0",
+        "label": "Cheerio Web Scraper",
+        "version": 1.1,
+        "name": "cheerioWebScraper",
+        "type": "Document",
+        "baseClasses": [
+          "Document"
+        ],
+        "category": "Document Loaders",
+        "description": "Load data from webpages",
+        "inputParams": [
+          {
+            "label": "URL",
+            "name": "url",
+            "type": "string",
+            "id": "cheerioWebScraper_0-input-url-string"
+          },
+          {
+            "label": "Get Relative Links Method",
+            "name": "relativeLinksMethod",
+            "type": "options",
+            "description": "Select a method to retrieve relative links",
+            "options": [
+              {
+                "label": "Web Crawl",
+                "name": "webCrawl",
+                "description": "Crawl relative links from HTML URL"
+              },
+              {
+                "label": "Scrape XML Sitemap",
+                "name": "scrapeXMLSitemap",
+                "description": "Scrape relative links from XML sitemap URL"
+              }
+            ],
+            "optional": true,
+            "additionalParams": true,
+            "id": "cheerioWebScraper_0-input-relativeLinksMethod-options"
+          },
+          {
+            "label": "Get Relative Links Limit",
+            "name": "limit",
+            "type": "number",
+            "optional": true,
+            "default": "10",
+            "additionalParams": true,
+            "description": "Only used when \"Get Relative Links Method\" is selected. Set 0 to retrieve all relative links, default limit is 10.",
+            "warning": "Retrieving all links might take long time, and all links will be upserted again if the flow's state changed (eg: different URL, chunk size, etc)",
+            "id": "cheerioWebScraper_0-input-limit-number"
+          },
+          {
+            "label": "Selector (CSS)",
+            "name": "selector",
+            "type": "string",
+            "description": "Specify a CSS selector to select the content to be extracted",
+            "optional": true,
+            "additionalParams": true,
+            "id": "cheerioWebScraper_0-input-selector-string"
+          },
+          {
+            "label": "Metadata",
+            "name": "metadata",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "cheerioWebScraper_0-input-metadata-json"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Text Splitter",
+            "name": "textSplitter",
+            "type": "TextSplitter",
+            "optional": true,
+            "id": "cheerioWebScraper_0-input-textSplitter-TextSplitter"
+          }
+        ],
+        "inputs": {
+          "url": "https://www.premierleague.com/news/1293321",
+          "textSplitter": "{{htmlToMarkdownTextSplitter_0.data.instance}}",
+          "relativeLinksMethod": "webCrawl",
+          "limit": "10",
+          "selector": "",
+          "metadata": "",
+          "selectedLinks": [
+            "https://www.premierleague.com/news/1293321",
+            "https://www.premierleague.com/news/1214130",
+            "https://www.premierleague.com/news/1488423",
+            "https://www.premierleague.com/news/3886013",
+            "https://www.premierleague.com/news/3718057"
+          ]
+        },
+        "outputAnchors": [
+          {
+            "id": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
+            "name": "cheerioWebScraper",
+            "label": "Document",
+            "description": "Load data from webpages",
+            "type": "Document"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 426,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 231.63882530153592,
+        "y": 225.0455338939758
+      }
+    },
+    {
+      "id": "htmlToMarkdownTextSplitter_0",
+      "position": {
+        "x": -179.91685079101708,
+        "y": 71.30480553057669
+      },
+      "type": "customNode",
+      "data": {
+        "id": "htmlToMarkdownTextSplitter_0",
+        "label": "HtmlToMarkdown Text Splitter",
+        "version": 1,
+        "name": "htmlToMarkdownTextSplitter",
+        "type": "HtmlToMarkdownTextSplitter",
+        "baseClasses": [
+          "HtmlToMarkdownTextSplitter",
+          "MarkdownTextSplitter",
+          "RecursiveCharacterTextSplitter",
+          "TextSplitter",
+          "BaseDocumentTransformer",
+          "Runnable"
+        ],
+        "category": "Text Splitters",
+        "description": "Converts Html to Markdown and then split your content into documents based on the Markdown headers",
+        "inputParams": [
+          {
+            "label": "Chunk Size",
+            "name": "chunkSize",
+            "type": "number",
+            "default": 1000,
+            "optional": true,
+            "id": "htmlToMarkdownTextSplitter_0-input-chunkSize-number"
+          },
+          {
+            "label": "Chunk Overlap",
+            "name": "chunkOverlap",
+            "type": "number",
+            "optional": true,
+            "id": "htmlToMarkdownTextSplitter_0-input-chunkOverlap-number"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "chunkSize": 1000,
+          "chunkOverlap": "20"
+        },
+        "outputAnchors": [
+          {
+            "id": "htmlToMarkdownTextSplitter_0-output-htmlToMarkdownTextSplitter-HtmlToMarkdownTextSplitter|MarkdownTextSplitter|RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
+            "name": "htmlToMarkdownTextSplitter",
+            "label": "HtmlToMarkdownTextSplitter",
+            "description": "Converts Html to Markdown and then split your content into documents based on the Markdown headers",
+            "type": "HtmlToMarkdownTextSplitter | MarkdownTextSplitter | RecursiveCharacterTextSplitter | TextSplitter | BaseDocumentTransformer | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 378,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -179.91685079101708,
+        "y": 71.30480553057669
+      },
+      "dragging": false
+    },
+    {
+      "id": "ollamaEmbedding_0",
+      "position": {
+        "x": -168.94577328207993,
+        "y": 751.1941455699072
+      },
+      "type": "customNode",
+      "data": {
+        "id": "ollamaEmbedding_0",
+        "label": "Ollama Embeddings",
+        "version": 1,
+        "name": "ollamaEmbedding",
+        "type": "OllamaEmbeddings",
+        "baseClasses": [
+          "OllamaEmbeddings",
+          "Embeddings"
+        ],
+        "category": "Embeddings",
+        "description": "Generate embeddings for a given text using open source model on Ollama",
+        "inputParams": [
+          {
+            "label": "Base URL",
+            "name": "baseUrl",
+            "type": "string",
+            "default": "http://localhost:11434",
+            "id": "ollamaEmbedding_0-input-baseUrl-string"
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "llama2",
+            "id": "ollamaEmbedding_0-input-modelName-string"
+          },
+          {
+            "label": "Number of GPU",
+            "name": "numGpu",
+            "type": "number",
+            "description": "The number of layers to send to the GPU(s). On macOS it defaults to 1 to enable metal support, 0 to disable. Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-numGpu-number"
+          },
+          {
+            "label": "Number of Thread",
+            "name": "numThread",
+            "type": "number",
+            "description": "Sets the number of threads to use during computation. By default, Ollama will detect this for optimal performance. It is recommended to set this value to the number of physical CPU cores your system has (as opposed to the logical number of cores). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-numThread-number"
+          },
+          {
+            "label": "Use MMap",
+            "name": "useMMap",
+            "type": "boolean",
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-useMMap-boolean"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "baseUrl": "http://host.docker.internal:11434",
+          "modelName": "nomic-embed-text",
+          "numGpu": "0",
+          "numThread": "1",
+          "useMMap": true
+        },
+        "outputAnchors": [
+          {
+            "id": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
+            "name": "ollamaEmbedding",
+            "label": "OllamaEmbeddings",
+            "description": "Generate embeddings for a given text using open source model on Ollama",
+            "type": "OllamaEmbeddings | Embeddings"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 430,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -168.94577328207993,
+        "y": 751.1941455699072
+      },
+      "dragging": false
+    },
+    {
+      "id": "chroma_0",
+      "position": {
+        "x": 714.9807663776785,
+        "y": 536.7039514627038
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chroma_0",
+        "label": "Chroma",
+        "version": 1,
+        "name": "chroma",
+        "type": "Chroma",
+        "baseClasses": [
+          "Chroma",
+          "VectorStoreRetriever",
+          "BaseRetriever"
+        ],
+        "category": "Vector Stores",
+        "description": "Upsert embedded data and perform similarity search upon query using Chroma, an open-source embedding database",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "description": "Only needed if you have chroma on cloud services with X-Api-key",
+            "optional": true,
+            "credentialNames": [
+              "chromaApi"
+            ],
+            "id": "chroma_0-input-credential-credential"
+          },
+          {
+            "label": "Collection Name",
+            "name": "collectionName",
+            "type": "string",
+            "id": "chroma_0-input-collectionName-string"
+          },
+          {
+            "label": "Chroma URL",
+            "name": "chromaURL",
+            "type": "string",
+            "optional": true,
+            "id": "chroma_0-input-chromaURL-string"
+          },
+          {
+            "label": "Chroma Metadata Filter",
+            "name": "chromaMetadataFilter",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chroma_0-input-chromaMetadataFilter-json"
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "description": "Number of top results to fetch. Default to 4",
+            "placeholder": "4",
+            "type": "number",
+            "additionalParams": true,
+            "optional": true,
+            "id": "chroma_0-input-topK-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Document",
+            "name": "document",
+            "type": "Document",
+            "list": true,
+            "optional": true,
+            "id": "chroma_0-input-document-Document"
+          },
+          {
+            "label": "Embeddings",
+            "name": "embeddings",
+            "type": "Embeddings",
+            "id": "chroma_0-input-embeddings-Embeddings"
+          }
+        ],
+        "inputs": {
+          "document": [
+            "{{cheerioWebScraper_0.data.instance}}"
+          ],
+          "embeddings": "{{ollamaEmbedding_0.data.instance}}",
+          "collectionName": "premier",
+          "chromaURL": "http://chroma:8000",
+          "chromaMetadataFilter": "",
+          "topK": ""
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "",
+            "options": [
+              {
+                "id": "chroma_0-output-retriever-Chroma|VectorStoreRetriever|BaseRetriever",
+                "name": "retriever",
+                "label": "Chroma Retriever",
+                "description": "",
+                "type": "Chroma | VectorStoreRetriever | BaseRetriever"
+              },
+              {
+                "id": "chroma_0-output-vectorStore-Chroma|VectorStore",
+                "name": "vectorStore",
+                "label": "Chroma Vector Store",
+                "description": "",
+                "type": "Chroma | VectorStore"
+              }
+            ],
+            "default": "retriever"
+          }
+        ],
+        "outputs": {
+          "output": "vectorStore"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 656,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 714.9807663776785,
+        "y": 536.7039514627038
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "htmlToMarkdownTextSplitter_0",
+      "sourceHandle": "htmlToMarkdownTextSplitter_0-output-htmlToMarkdownTextSplitter-HtmlToMarkdownTextSplitter|MarkdownTextSplitter|RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
+      "target": "cheerioWebScraper_0",
+      "targetHandle": "cheerioWebScraper_0-input-textSplitter-TextSplitter",
+      "type": "buttonedge",
+      "id": "htmlToMarkdownTextSplitter_0-htmlToMarkdownTextSplitter_0-output-htmlToMarkdownTextSplitter-HtmlToMarkdownTextSplitter|MarkdownTextSplitter|RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable-cheerioWebScraper_0-cheerioWebScraper_0-input-textSplitter-TextSplitter"
+    },
+    {
+      "source": "cheerioWebScraper_0",
+      "sourceHandle": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
+      "target": "chroma_0",
+      "targetHandle": "chroma_0-input-document-Document",
+      "type": "buttonedge",
+      "id": "cheerioWebScraper_0-cheerioWebScraper_0-output-cheerioWebScraper-Document-chroma_0-chroma_0-input-document-Document"
+    },
+    {
+      "source": "ollamaEmbedding_0",
+      "sourceHandle": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
+      "target": "chroma_0",
+      "targetHandle": "chroma_0-input-embeddings-Embeddings",
+      "type": "buttonedge",
+      "id": "ollamaEmbedding_0-ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings-chroma_0-chroma_0-input-embeddings-Embeddings"
+    }
+  ]
+}

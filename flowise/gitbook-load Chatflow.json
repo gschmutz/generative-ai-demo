@@ -1,0 +1,407 @@
+{
+  "nodes": [
+    {
+      "id": "gitbook_0",
+      "position": {
+        "x": 608.4675783761852,
+        "y": 412.28062042249167
+      },
+      "type": "customNode",
+      "data": {
+        "id": "gitbook_0",
+        "label": "GitBook",
+        "version": 1,
+        "name": "gitbook",
+        "type": "Document",
+        "baseClasses": [
+          "Document"
+        ],
+        "category": "Document Loaders",
+        "description": "Load data from GitBook",
+        "inputParams": [
+          {
+            "label": "Web Path",
+            "name": "webPath",
+            "type": "string",
+            "placeholder": "https://docs.gitbook.com/product-tour/navigation",
+            "description": "If want to load all paths from the GitBook provide only root path e.g.https://docs.gitbook.com/ ",
+            "id": "gitbook_0-input-webPath-string"
+          },
+          {
+            "label": "Should Load All Paths",
+            "name": "shouldLoadAllPaths",
+            "type": "boolean",
+            "description": "Load from all paths in a given GitBook",
+            "optional": true,
+            "id": "gitbook_0-input-shouldLoadAllPaths-boolean"
+          },
+          {
+            "label": "Metadata",
+            "name": "metadata",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "gitbook_0-input-metadata-json"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Text Splitter",
+            "name": "textSplitter",
+            "type": "TextSplitter",
+            "optional": true,
+            "id": "gitbook_0-input-textSplitter-TextSplitter"
+          }
+        ],
+        "inputs": {
+          "webPath": "https://python.langchain.com",
+          "shouldLoadAllPaths": true,
+          "textSplitter": "{{recursiveCharacterTextSplitter_0.data.instance}}",
+          "metadata": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "gitbook_0-output-gitbook-Document",
+            "name": "gitbook",
+            "label": "Document",
+            "description": "Load data from GitBook",
+            "type": "Document"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 479,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 608.4675783761852,
+        "y": 412.28062042249167
+      }
+    },
+    {
+      "id": "recursiveCharacterTextSplitter_0",
+      "position": {
+        "x": 198.28332765617893,
+        "y": 422.28366629328
+      },
+      "type": "customNode",
+      "data": {
+        "id": "recursiveCharacterTextSplitter_0",
+        "label": "Recursive Character Text Splitter",
+        "version": 2,
+        "name": "recursiveCharacterTextSplitter",
+        "type": "RecursiveCharacterTextSplitter",
+        "baseClasses": [
+          "RecursiveCharacterTextSplitter",
+          "TextSplitter",
+          "BaseDocumentTransformer",
+          "Runnable"
+        ],
+        "category": "Text Splitters",
+        "description": "Split documents recursively by different characters - starting with \"\\n\\n\", then \"\\n\", then \" \"",
+        "inputParams": [
+          {
+            "label": "Chunk Size",
+            "name": "chunkSize",
+            "type": "number",
+            "default": 1000,
+            "optional": true,
+            "id": "recursiveCharacterTextSplitter_0-input-chunkSize-number"
+          },
+          {
+            "label": "Chunk Overlap",
+            "name": "chunkOverlap",
+            "type": "number",
+            "optional": true,
+            "id": "recursiveCharacterTextSplitter_0-input-chunkOverlap-number"
+          },
+          {
+            "label": "Custom Separators",
+            "name": "separators",
+            "type": "string",
+            "rows": 4,
+            "description": "Array of custom separators to determine when to split the text, will override the default separators",
+            "placeholder": "[\"|\", \"##\", \">\", \"-\"]",
+            "additionalParams": true,
+            "optional": true,
+            "id": "recursiveCharacterTextSplitter_0-input-separators-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "chunkSize": 1000,
+          "chunkOverlap": "100",
+          "separators": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "recursiveCharacterTextSplitter_0-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
+            "name": "recursiveCharacterTextSplitter",
+            "label": "RecursiveCharacterTextSplitter",
+            "description": "Split documents recursively by different characters - starting with \"\\n\\n\", then \"\\n\", then \" \"",
+            "type": "RecursiveCharacterTextSplitter | TextSplitter | BaseDocumentTransformer | Runnable"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 430,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 198.28332765617893,
+        "y": 422.28366629328
+      },
+      "dragging": false
+    },
+    {
+      "id": "chroma_0",
+      "position": {
+        "x": 1163.8867802367295,
+        "y": 297.46814144158367
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chroma_0",
+        "label": "Chroma",
+        "version": 1,
+        "name": "chroma",
+        "type": "Chroma",
+        "baseClasses": [
+          "Chroma",
+          "VectorStoreRetriever",
+          "BaseRetriever"
+        ],
+        "category": "Vector Stores",
+        "description": "Upsert embedded data and perform similarity search upon query using Chroma, an open-source embedding database",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "description": "Only needed if you have chroma on cloud services with X-Api-key",
+            "optional": true,
+            "credentialNames": [
+              "chromaApi"
+            ],
+            "id": "chroma_0-input-credential-credential"
+          },
+          {
+            "label": "Collection Name",
+            "name": "collectionName",
+            "type": "string",
+            "id": "chroma_0-input-collectionName-string"
+          },
+          {
+            "label": "Chroma URL",
+            "name": "chromaURL",
+            "type": "string",
+            "optional": true,
+            "id": "chroma_0-input-chromaURL-string"
+          },
+          {
+            "label": "Chroma Metadata Filter",
+            "name": "chromaMetadataFilter",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chroma_0-input-chromaMetadataFilter-json"
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "description": "Number of top results to fetch. Default to 4",
+            "placeholder": "4",
+            "type": "number",
+            "additionalParams": true,
+            "optional": true,
+            "id": "chroma_0-input-topK-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Document",
+            "name": "document",
+            "type": "Document",
+            "list": true,
+            "optional": true,
+            "id": "chroma_0-input-document-Document"
+          },
+          {
+            "label": "Embeddings",
+            "name": "embeddings",
+            "type": "Embeddings",
+            "id": "chroma_0-input-embeddings-Embeddings"
+          }
+        ],
+        "inputs": {
+          "document": [
+            "{{gitbook_0.data.instance}}"
+          ],
+          "embeddings": "{{ollamaEmbedding_0.data.instance}}",
+          "collectionName": "gitbook",
+          "chromaURL": "http://chroma:8000",
+          "chromaMetadataFilter": "",
+          "topK": ""
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "",
+            "options": [
+              {
+                "id": "chroma_0-output-retriever-Chroma|VectorStoreRetriever|BaseRetriever",
+                "name": "retriever",
+                "label": "Chroma Retriever",
+                "description": "",
+                "type": "Chroma | VectorStoreRetriever | BaseRetriever"
+              },
+              {
+                "id": "chroma_0-output-vectorStore-Chroma|VectorStore",
+                "name": "vectorStore",
+                "label": "Chroma Vector Store",
+                "description": "",
+                "type": "Chroma | VectorStore"
+              }
+            ],
+            "default": "retriever"
+          }
+        ],
+        "outputs": {
+          "output": "vectorStore"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 656,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1163.8867802367295,
+        "y": 297.46814144158367
+      },
+      "dragging": false
+    },
+    {
+      "id": "ollamaEmbedding_0",
+      "position": {
+        "x": 576.8143643619449,
+        "y": 1002.2080889464435
+      },
+      "type": "customNode",
+      "data": {
+        "id": "ollamaEmbedding_0",
+        "label": "Ollama Embeddings",
+        "version": 1,
+        "name": "ollamaEmbedding",
+        "type": "OllamaEmbeddings",
+        "baseClasses": [
+          "OllamaEmbeddings",
+          "Embeddings"
+        ],
+        "category": "Embeddings",
+        "description": "Generate embeddings for a given text using open source model on Ollama",
+        "inputParams": [
+          {
+            "label": "Base URL",
+            "name": "baseUrl",
+            "type": "string",
+            "default": "http://localhost:11434",
+            "id": "ollamaEmbedding_0-input-baseUrl-string"
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "llama2",
+            "id": "ollamaEmbedding_0-input-modelName-string"
+          },
+          {
+            "label": "Number of GPU",
+            "name": "numGpu",
+            "type": "number",
+            "description": "The number of layers to send to the GPU(s). On macOS it defaults to 1 to enable metal support, 0 to disable. Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-numGpu-number"
+          },
+          {
+            "label": "Number of Thread",
+            "name": "numThread",
+            "type": "number",
+            "description": "Sets the number of threads to use during computation. By default, Ollama will detect this for optimal performance. It is recommended to set this value to the number of physical CPU cores your system has (as opposed to the logical number of cores). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-numThread-number"
+          },
+          {
+            "label": "Use MMap",
+            "name": "useMMap",
+            "type": "boolean",
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-useMMap-boolean"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "baseUrl": "http://host.docker.internal:11434",
+          "modelName": "nomic-embed-text",
+          "numGpu": "0",
+          "numThread": "1",
+          "useMMap": true
+        },
+        "outputAnchors": [
+          {
+            "id": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
+            "name": "ollamaEmbedding",
+            "label": "OllamaEmbeddings",
+            "description": "Generate embeddings for a given text using open source model on Ollama",
+            "type": "OllamaEmbeddings | Embeddings"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 430,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 576.8143643619449,
+        "y": 1002.2080889464435
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "recursiveCharacterTextSplitter_0",
+      "sourceHandle": "recursiveCharacterTextSplitter_0-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
+      "target": "gitbook_0",
+      "targetHandle": "gitbook_0-input-textSplitter-TextSplitter",
+      "type": "buttonedge",
+      "id": "recursiveCharacterTextSplitter_0-recursiveCharacterTextSplitter_0-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable-gitbook_0-gitbook_0-input-textSplitter-TextSplitter"
+    },
+    {
+      "source": "gitbook_0",
+      "sourceHandle": "gitbook_0-output-gitbook-Document",
+      "target": "chroma_0",
+      "targetHandle": "chroma_0-input-document-Document",
+      "type": "buttonedge",
+      "id": "gitbook_0-gitbook_0-output-gitbook-Document-chroma_0-chroma_0-input-document-Document"
+    },
+    {
+      "source": "ollamaEmbedding_0",
+      "sourceHandle": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
+      "target": "chroma_0",
+      "targetHandle": "chroma_0-input-embeddings-Embeddings",
+      "type": "buttonedge",
+      "id": "ollamaEmbedding_0-ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings-chroma_0-chroma_0-input-embeddings-Embeddings"
+    }
+  ]
+}

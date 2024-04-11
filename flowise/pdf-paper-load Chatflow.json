@@ -1,0 +1,412 @@
+{
+  "nodes": [
+    {
+      "width": 300,
+      "height": 430,
+      "id": "recursiveCharacterTextSplitter_1",
+      "position": {
+        "x": -60.86401216592013,
+        "y": 72.41757849876433
+      },
+      "type": "customNode",
+      "data": {
+        "id": "recursiveCharacterTextSplitter_1",
+        "label": "Recursive Character Text Splitter",
+        "version": 2,
+        "name": "recursiveCharacterTextSplitter",
+        "type": "RecursiveCharacterTextSplitter",
+        "baseClasses": [
+          "RecursiveCharacterTextSplitter",
+          "TextSplitter"
+        ],
+        "category": "Text Splitters",
+        "description": "Split documents recursively by different characters - starting with \"\n\n\", then \"\n\", then \" \"",
+        "inputParams": [
+          {
+            "label": "Chunk Size",
+            "name": "chunkSize",
+            "type": "number",
+            "default": 1000,
+            "optional": true,
+            "id": "recursiveCharacterTextSplitter_1-input-chunkSize-number"
+          },
+          {
+            "label": "Chunk Overlap",
+            "name": "chunkOverlap",
+            "type": "number",
+            "optional": true,
+            "id": "recursiveCharacterTextSplitter_1-input-chunkOverlap-number"
+          },
+          {
+            "label": "Custom Separators",
+            "name": "separators",
+            "type": "string",
+            "rows": 4,
+            "description": "Array of custom separators to determine when to split the text, will override the default separators",
+            "placeholder": "[\"|\", \"##\", \">\", \"-\"]",
+            "additionalParams": true,
+            "optional": true,
+            "id": "recursiveCharacterTextSplitter_1-input-separators-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "chunkSize": 1000,
+          "chunkOverlap": "200"
+        },
+        "outputAnchors": [
+          {
+            "id": "recursiveCharacterTextSplitter_1-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter",
+            "name": "recursiveCharacterTextSplitter",
+            "label": "RecursiveCharacterTextSplitter",
+            "type": "RecursiveCharacterTextSplitter | TextSplitter"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": -60.86401216592013,
+        "y": 72.41757849876433
+      },
+      "dragging": false
+    },
+    {
+      "width": 300,
+      "height": 509,
+      "id": "pdfFile_0",
+      "position": {
+        "x": 573.1485895506038,
+        "y": 214.33650028423813
+      },
+      "type": "customNode",
+      "data": {
+        "id": "pdfFile_0",
+        "label": "Pdf File",
+        "version": 1,
+        "name": "pdfFile",
+        "type": "Document",
+        "baseClasses": [
+          "Document"
+        ],
+        "category": "Document Loaders",
+        "description": "Load data from PDF files",
+        "inputParams": [
+          {
+            "label": "Pdf File",
+            "name": "pdfFile",
+            "type": "file",
+            "fileType": ".pdf",
+            "id": "pdfFile_0-input-pdfFile-file"
+          },
+          {
+            "label": "Usage",
+            "name": "usage",
+            "type": "options",
+            "options": [
+              {
+                "label": "One document per page",
+                "name": "perPage"
+              },
+              {
+                "label": "One document per file",
+                "name": "perFile"
+              }
+            ],
+            "default": "perPage",
+            "id": "pdfFile_0-input-usage-options"
+          },
+          {
+            "label": "Metadata",
+            "name": "metadata",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "pdfFile_0-input-metadata-json"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Text Splitter",
+            "name": "textSplitter",
+            "type": "TextSplitter",
+            "optional": true,
+            "id": "pdfFile_0-input-textSplitter-TextSplitter"
+          }
+        ],
+        "inputs": {
+          "textSplitter": "{{recursiveCharacterTextSplitter_1.data.instance}}",
+          "usage": "perFile",
+          "metadata": "{\"id\":\"doc2\"}"
+        },
+        "outputAnchors": [
+          {
+            "id": "pdfFile_0-output-pdfFile-Document",
+            "name": "pdfFile",
+            "label": "Document",
+            "type": "Document"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "selected": false,
+      "positionAbsolute": {
+        "x": 573.1485895506038,
+        "y": 214.33650028423813
+      },
+      "dragging": false
+    },
+    {
+      "id": "ollamaEmbedding_0",
+      "position": {
+        "x": 433.37312222620477,
+        "y": 846.5593794491904
+      },
+      "type": "customNode",
+      "data": {
+        "id": "ollamaEmbedding_0",
+        "label": "Ollama Embeddings",
+        "version": 1,
+        "name": "ollamaEmbedding",
+        "type": "OllamaEmbeddings",
+        "baseClasses": [
+          "OllamaEmbeddings",
+          "Embeddings"
+        ],
+        "category": "Embeddings",
+        "description": "Generate embeddings for a given text using open source model on Ollama",
+        "inputParams": [
+          {
+            "label": "Base URL",
+            "name": "baseUrl",
+            "type": "string",
+            "default": "http://localhost:11434",
+            "id": "ollamaEmbedding_0-input-baseUrl-string"
+          },
+          {
+            "label": "Model Name",
+            "name": "modelName",
+            "type": "string",
+            "placeholder": "llama2",
+            "id": "ollamaEmbedding_0-input-modelName-string"
+          },
+          {
+            "label": "Number of GPU",
+            "name": "numGpu",
+            "type": "number",
+            "description": "The number of layers to send to the GPU(s). On macOS it defaults to 1 to enable metal support, 0 to disable. Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-numGpu-number"
+          },
+          {
+            "label": "Number of Thread",
+            "name": "numThread",
+            "type": "number",
+            "description": "Sets the number of threads to use during computation. By default, Ollama will detect this for optimal performance. It is recommended to set this value to the number of physical CPU cores your system has (as opposed to the logical number of cores). Refer to <a target=\"_blank\" href=\"https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md#valid-parameters-and-values\">docs</a> for more details",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-numThread-number"
+          },
+          {
+            "label": "Use MMap",
+            "name": "useMMap",
+            "type": "boolean",
+            "optional": true,
+            "additionalParams": true,
+            "id": "ollamaEmbedding_0-input-useMMap-boolean"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "baseUrl": "http://﻿﻿host.docker.internal:11434",
+          "modelName": "nomic-embed-text",
+          "numGpu": "0",
+          "numThread": "4",
+          "useMMap": true
+        },
+        "outputAnchors": [
+          {
+            "id": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
+            "name": "ollamaEmbedding",
+            "label": "OllamaEmbeddings",
+            "description": "Generate embeddings for a given text using open source model on Ollama",
+            "type": "OllamaEmbeddings | Embeddings"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 430,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 433.37312222620477,
+        "y": 846.5593794491904
+      },
+      "dragging": false
+    },
+    {
+      "id": "chroma_0",
+      "position": {
+        "x": 1194.6441685481107,
+        "y": 707.5042929236143
+      },
+      "type": "customNode",
+      "data": {
+        "id": "chroma_0",
+        "label": "Chroma",
+        "version": 1,
+        "name": "chroma",
+        "type": "Chroma",
+        "baseClasses": [
+          "Chroma",
+          "VectorStoreRetriever",
+          "BaseRetriever"
+        ],
+        "category": "Vector Stores",
+        "description": "Upsert embedded data and perform similarity search upon query using Chroma, an open-source embedding database",
+        "inputParams": [
+          {
+            "label": "Connect Credential",
+            "name": "credential",
+            "type": "credential",
+            "description": "Only needed if you have chroma on cloud services with X-Api-key",
+            "optional": true,
+            "credentialNames": [
+              "chromaApi"
+            ],
+            "id": "chroma_0-input-credential-credential"
+          },
+          {
+            "label": "Collection Name",
+            "name": "collectionName",
+            "type": "string",
+            "id": "chroma_0-input-collectionName-string"
+          },
+          {
+            "label": "Chroma URL",
+            "name": "chromaURL",
+            "type": "string",
+            "optional": true,
+            "id": "chroma_0-input-chromaURL-string"
+          },
+          {
+            "label": "Chroma Metadata Filter",
+            "name": "chromaMetadataFilter",
+            "type": "json",
+            "optional": true,
+            "additionalParams": true,
+            "id": "chroma_0-input-chromaMetadataFilter-json"
+          },
+          {
+            "label": "Top K",
+            "name": "topK",
+            "description": "Number of top results to fetch. Default to 4",
+            "placeholder": "4",
+            "type": "number",
+            "additionalParams": true,
+            "optional": true,
+            "id": "chroma_0-input-topK-number"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "Document",
+            "name": "document",
+            "type": "Document",
+            "list": true,
+            "optional": true,
+            "id": "chroma_0-input-document-Document"
+          },
+          {
+            "label": "Embeddings",
+            "name": "embeddings",
+            "type": "Embeddings",
+            "id": "chroma_0-input-embeddings-Embeddings"
+          }
+        ],
+        "inputs": {
+          "document": [
+            "{{pdfFile_0.data.instance}}"
+          ],
+          "embeddings": "{{ollamaEmbedding_0.data.instance}}",
+          "collectionName": "autogen",
+          "chromaURL": "http://chroma:8000",
+          "chromaMetadataFilter": "",
+          "topK": ""
+        },
+        "outputAnchors": [
+          {
+            "name": "output",
+            "label": "Output",
+            "type": "options",
+            "description": "",
+            "options": [
+              {
+                "id": "chroma_0-output-retriever-Chroma|VectorStoreRetriever|BaseRetriever",
+                "name": "retriever",
+                "label": "Chroma Retriever",
+                "description": "",
+                "type": "Chroma | VectorStoreRetriever | BaseRetriever"
+              },
+              {
+                "id": "chroma_0-output-vectorStore-Chroma|VectorStore",
+                "name": "vectorStore",
+                "label": "Chroma Vector Store",
+                "description": "",
+                "type": "Chroma | VectorStore"
+              }
+            ],
+            "default": "retriever"
+          }
+        ],
+        "outputs": {
+          "output": "vectorStore"
+        },
+        "selected": false
+      },
+      "width": 300,
+      "height": 656,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1194.6441685481107,
+        "y": 707.5042929236143
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "recursiveCharacterTextSplitter_1",
+      "sourceHandle": "recursiveCharacterTextSplitter_1-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter",
+      "target": "pdfFile_0",
+      "targetHandle": "pdfFile_0-input-textSplitter-TextSplitter",
+      "type": "buttonedge",
+      "id": "recursiveCharacterTextSplitter_1-recursiveCharacterTextSplitter_1-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter-pdfFile_0-pdfFile_0-input-textSplitter-TextSplitter",
+      "data": {
+        "label": ""
+      }
+    },
+    {
+      "source": "ollamaEmbedding_0",
+      "sourceHandle": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
+      "target": "chroma_0",
+      "targetHandle": "chroma_0-input-embeddings-Embeddings",
+      "type": "buttonedge",
+      "id": "ollamaEmbedding_0-ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings-chroma_0-chroma_0-input-embeddings-Embeddings"
+    },
+    {
+      "source": "pdfFile_0",
+      "sourceHandle": "pdfFile_0-output-pdfFile-Document",
+      "target": "chroma_0",
+      "targetHandle": "chroma_0-input-document-Document",
+      "type": "buttonedge",
+      "id": "pdfFile_0-pdfFile_0-output-pdfFile-Document-chroma_0-chroma_0-input-document-Document"
+    }
+  ]
+}
