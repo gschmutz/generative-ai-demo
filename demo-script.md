@@ -47,13 +47,11 @@ Enable the following services
 
   * `FLOWISE_enable`
   * `CHROMA_enable`
-  * `OLLAMA_enable`
+  * `OLLAMA_enable` (external or internal, depending on platform)
   * `OLLAMA_WEBUI_enable`
   * `REDIS_STACK_enable`
   * `REDIS_INSIGHT_enable`
   * `VECTOR_ADMIN_enable`
-  * `POSTGRESQL_enable`
-
 
 If you run Ollama locally (recommended if you run on a Mac)
 
