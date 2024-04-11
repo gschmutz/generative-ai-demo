@@ -2,58 +2,6 @@
 
 ![](./images/semantic-search-with-vector-store.png)
 
-## Create the Platys stack
-
-Quickly navigate to <https://github.com/TrivadisPF/platys-modern-data-platform/tree/develop>
-
-```bash
-export DOCKER_HOST=unix:///Users/guido.schmutz/.orbstack/run/docker.sock
-export PUBLIC_IP=10.0.4.68
-export DOCKER_HOST_IP=localhost
-
-mkdir platys-llm-demo
-cd platys-llm-demo
-
-platys init -n demo-platform --stack trivadis/platys-modern-data-platform --stack-version develop --structure flat
-```
-
-edit the config.yml
-
-```bash
-code .
-```
-
-Enable the following services
-
-  * `FLOWISE_enable`
-  * `CHROMA_enable`
-  * `OLLAMA_enable`
-  * `OLLAMA_WEBUI_enable`
-  * `REDIS_STACK_enable`
-  * `REDIS_INSIGHT_enable`
-  * `VECTOR_ADMIN_enable`
-  * `POSTGRESQL_enable`
-
-
-If you run Ollama locally (recommended if you run on a Mac)
-
-```bash
-OLLAMA_enable: true
-OLLAMA_url: http://${PUBLIC_IP}:11434
-```
-
-if you are running Ollama on docker, specify the model(s) to download (as a comma-separated list)
-
-```bash
-OLLAMA_llms: llama2,mistral
-```
-
-```bash
-platys gen
-```
-
-Navigate to <http://markdown-viewer.platys-llm-demo.orb.local/>
-
 ## Ollama
 
 ### Running locally
