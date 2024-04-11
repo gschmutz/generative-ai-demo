@@ -3,8 +3,8 @@
     {
       "id": "cheerioWebScraper_0",
       "position": {
-        "x": 231.63882530153592,
-        "y": 225.0455338939758
+        "x": 251.4772181775577,
+        "y": 162.69629914076438
       },
       "type": "customNode",
       "data": {
@@ -116,15 +116,15 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 231.63882530153592,
-        "y": 225.0455338939758
+        "x": 251.4772181775577,
+        "y": 162.69629914076438
       }
     },
     {
       "id": "htmlToMarkdownTextSplitter_0",
       "position": {
-        "x": -179.91685079101708,
-        "y": 71.30480553057669
+        "x": -198.160318125294,
+        "y": 163.9254858430595
       },
       "type": "customNode",
       "data": {
@@ -181,16 +181,16 @@
       "height": 378,
       "selected": false,
       "positionAbsolute": {
-        "x": -179.91685079101708,
-        "y": 71.30480553057669
+        "x": -198.160318125294,
+        "y": 163.9254858430595
       },
       "dragging": false
     },
     {
       "id": "ollamaEmbedding_0",
       "position": {
-        "x": -168.94577328207993,
-        "y": 751.1941455699072
+        "x": -202.62602066843732,
+        "y": 594.019657766906
       },
       "type": "customNode",
       "data": {
@@ -273,22 +273,22 @@
       "height": 430,
       "selected": false,
       "positionAbsolute": {
-        "x": -168.94577328207993,
-        "y": 751.1941455699072
+        "x": -202.62602066843732,
+        "y": 594.019657766906
       },
       "dragging": false
     },
     {
-      "id": "chroma_0",
+      "id": "chroma_1",
       "position": {
-        "x": 714.9807663776785,
-        "y": 536.7039514627038
+        "x": 825.7544287166922,
+        "y": 426.7217441189972
       },
       "type": "customNode",
       "data": {
-        "id": "chroma_0",
+        "id": "chroma_1",
         "label": "Chroma",
-        "version": 1,
+        "version": 2,
         "name": "chroma",
         "type": "Chroma",
         "baseClasses": [
@@ -308,20 +308,20 @@
             "credentialNames": [
               "chromaApi"
             ],
-            "id": "chroma_0-input-credential-credential"
+            "id": "chroma_1-input-credential-credential"
           },
           {
             "label": "Collection Name",
             "name": "collectionName",
             "type": "string",
-            "id": "chroma_0-input-collectionName-string"
+            "id": "chroma_1-input-collectionName-string"
           },
           {
             "label": "Chroma URL",
             "name": "chromaURL",
             "type": "string",
             "optional": true,
-            "id": "chroma_0-input-chromaURL-string"
+            "id": "chroma_1-input-chromaURL-string"
           },
           {
             "label": "Chroma Metadata Filter",
@@ -329,7 +329,7 @@
             "type": "json",
             "optional": true,
             "additionalParams": true,
-            "id": "chroma_0-input-chromaMetadataFilter-json"
+            "id": "chroma_1-input-chromaMetadataFilter-json"
           },
           {
             "label": "Top K",
@@ -339,7 +339,7 @@
             "type": "number",
             "additionalParams": true,
             "optional": true,
-            "id": "chroma_0-input-topK-number"
+            "id": "chroma_1-input-topK-number"
           }
         ],
         "inputAnchors": [
@@ -349,13 +349,21 @@
             "type": "Document",
             "list": true,
             "optional": true,
-            "id": "chroma_0-input-document-Document"
+            "id": "chroma_1-input-document-Document"
           },
           {
             "label": "Embeddings",
             "name": "embeddings",
             "type": "Embeddings",
-            "id": "chroma_0-input-embeddings-Embeddings"
+            "id": "chroma_1-input-embeddings-Embeddings"
+          },
+          {
+            "label": "Record Manager",
+            "name": "recordManager",
+            "type": "RecordManager",
+            "description": "Keep track of the record to prevent duplication",
+            "optional": true,
+            "id": "chroma_1-input-recordManager-RecordManager"
           }
         ],
         "inputs": {
@@ -363,6 +371,7 @@
             "{{cheerioWebScraper_0.data.instance}}"
           ],
           "embeddings": "{{ollamaEmbedding_0.data.instance}}",
+          "recordManager": "",
           "collectionName": "premier",
           "chromaURL": "http://chroma:8000",
           "chromaMetadataFilter": "",
@@ -376,14 +385,14 @@
             "description": "",
             "options": [
               {
-                "id": "chroma_0-output-retriever-Chroma|VectorStoreRetriever|BaseRetriever",
+                "id": "chroma_1-output-retriever-Chroma|VectorStoreRetriever|BaseRetriever",
                 "name": "retriever",
                 "label": "Chroma Retriever",
                 "description": "",
                 "type": "Chroma | VectorStoreRetriever | BaseRetriever"
               },
               {
-                "id": "chroma_0-output-vectorStore-Chroma|VectorStore",
+                "id": "chroma_1-output-vectorStore-Chroma|VectorStore",
                 "name": "vectorStore",
                 "label": "Chroma Vector Store",
                 "description": "",
@@ -399,13 +408,13 @@
         "selected": false
       },
       "width": 300,
-      "height": 656,
+      "height": 706,
       "selected": false,
+      "dragging": false,
       "positionAbsolute": {
-        "x": 714.9807663776785,
-        "y": 536.7039514627038
-      },
-      "dragging": false
+        "x": 825.7544287166922,
+        "y": 426.7217441189972
+      }
     }
   ],
   "edges": [
@@ -420,18 +429,18 @@
     {
       "source": "cheerioWebScraper_0",
       "sourceHandle": "cheerioWebScraper_0-output-cheerioWebScraper-Document",
-      "target": "chroma_0",
-      "targetHandle": "chroma_0-input-document-Document",
+      "target": "chroma_1",
+      "targetHandle": "chroma_1-input-document-Document",
       "type": "buttonedge",
-      "id": "cheerioWebScraper_0-cheerioWebScraper_0-output-cheerioWebScraper-Document-chroma_0-chroma_0-input-document-Document"
+      "id": "cheerioWebScraper_0-cheerioWebScraper_0-output-cheerioWebScraper-Document-chroma_1-chroma_1-input-document-Document"
     },
     {
       "source": "ollamaEmbedding_0",
       "sourceHandle": "ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings",
-      "target": "chroma_0",
-      "targetHandle": "chroma_0-input-embeddings-Embeddings",
+      "target": "chroma_1",
+      "targetHandle": "chroma_1-input-embeddings-Embeddings",
       "type": "buttonedge",
-      "id": "ollamaEmbedding_0-ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings-chroma_0-chroma_0-input-embeddings-Embeddings"
+      "id": "ollamaEmbedding_0-ollamaEmbedding_0-output-ollamaEmbedding-OllamaEmbeddings|Embeddings-chroma_1-chroma_1-input-embeddings-Embeddings"
     }
   ]
 }

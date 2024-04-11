@@ -1,4 +1,4 @@
-# Generative AI Demo
+# Generative AI with RAG (retrieval augmented generation) Demo
 
 Important Links
 
@@ -9,7 +9,10 @@ Show the application running on
 
 * Ollama Web UI: <http://10.0.4.68:28338/>
 
-Now ask the question: `can a player asked for an incident to be reviewed by the VAR`
+Now ask the following questions: 
+
+1. `in football what is a VAR`
+1. `can a player asked for an incident to be reviewed by the VAR`
 
 Now show the RAG application
 
@@ -17,11 +20,11 @@ Now show the RAG application
 
 Now ask the question: `can a player asked for an incident to be reviewed by the VAR`
 
-![](./images/semantic-search-with-vector-store.png)
-
 ## Create the Platys stack
 
 Quickly navigate to <https://github.com/TrivadisPF/platys-modern-data-platform/tree/develop>
+
+show how platys works: <https://github.com/TrivadisPF/platys/blob/master/documentation/images/platys-tool.png>
 
 ```bash
 export DOCKER_HOST=unix:///Users/guido.schmutz/.orbstack/run/docker.sock
@@ -96,12 +99,9 @@ docker exec -ti ollama ollama list
 
 ## Flowise
 
-Load the two flows
+### load the documents
 
-  * `webpage-load`: <webpage-load.json>
-  * `webpage-ask-questions`: <webpage-ask-questions.json>
-
-### First let's load the documents
+Load the flow `webpage-load.json`
 
 Open the `webpage-load` flow and on the last node add the **Connect Credential**:
 
@@ -109,7 +109,9 @@ Open the `webpage-load` flow and on the last node add the **Connect Credential**
   * **Chroma Api Key:** `abc123!`
 
 
-### Now let's use the chatflow
+### Ask questions
+
+Load the flow `webpage-ask-questions.json`
 
 Open the `webpage-ask-questions ` flow and on the **Redis-Backed Chat Memory** node and add the **Connect Credential**:
 
