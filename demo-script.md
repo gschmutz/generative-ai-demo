@@ -12,13 +12,13 @@ Show the application running on
 Now ask the following questions: 
 
 1. `in football what is a VAR`
-1. `can a player asked for an incident to be reviewed by the VAR`
+1. `can a player ask for an incident to be reviewed by the VAR`
 
 Now show the RAG application
 
 * Flowise: <http://10.0.4.68:28340/>
 
-Now ask the question: `can a player asked for an incident to be reviewed by the VAR`
+Now ask the question: `can a player ask for an incident to be reviewed by the VAR`
 
 ## Create the Platys stack
 
@@ -117,7 +117,7 @@ Open the `webpage-ask-questions ` flow and on the **Redis-Backed Chat Memory** n
   * **CREDENTIAL NAME:** `redis`
   * **Redis URL:** `redis://redis-stack-1:6379`
 
-Now ask the question: `can a player asked for an incident to be reviewed by the VAR`  
+Now ask the question: `can a player ask for an incident to be reviewed by the VAR`  
 
 ## Vector Admin
 
